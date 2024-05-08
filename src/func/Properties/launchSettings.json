@@ -1,0 +1,23 @@
+{
+    "profiles": {
+        "debug": {
+            "commandName": "Project",
+            "commandLineArgs": "-p 7000"
+        },
+        "dapr": {
+            "commandName": "Executable",
+            "executablePath": "dapr",
+            "commandLineArgs": "run -d ../components -p 7000 -- func start -p 7000",
+            "workingDirectory": ".",
+            "environmentVariables": {
+                "DAPR_APP_PORT": "7000"
+            }
+        },
+        "dapr.yaml": {
+            "commandName": "Executable",
+            "executablePath": "dapr",
+            "commandLineArgs": "run -f .",
+            "workingDirectory": "."
+        }
+    }
+}

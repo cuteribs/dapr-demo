@@ -1,0 +1,31 @@
+@web_HostAddress = http://localhost:5000
+
+GET {{web_HostAddress}}/test/test?str=hello+there
+Accept: application/json
+
+###
+
+GET {{web_HostAddress}}/dapr/subscribe
+Content-Type: application/json
+
+###
+
+POST {{web_HostAddress}}/test/pub
+Content-Type: application/json
+
+"test 9"
+
+###
+
+POST {{web_HostAddress}}/test/sub
+Content-Type: application/json
+
+{
+    "Id": "052d582d-6905-4658-90b6-2aaa378acce0",
+    "Content": "fake messsage"
+}
+
+###
+
+GET http://localhost:3001/dapr/subscribe
+Content-Type: application/json

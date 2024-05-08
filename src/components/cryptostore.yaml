@@ -1,0 +1,22 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+
+metadata:
+  name: cryptostore
+
+spec:
+  type: crypto.azure.keyvault
+  metadata:
+  - name: vaultName
+    value: eric-dapr-kv
+  - name: azureTenantId
+    value: adf10e2b-b6e9-41d6-be2f-c12bb566019c
+  - name: azureClientId
+    value: 666b5041-16ae-4f2c-a8be-fcbc0346c409
+  - name: azureClientSecret
+    secretKeyRef:
+      name: azureClientSecret
+      key:  azureClientSecret
+
+auth:
+  secretStore: envvar-secretstore

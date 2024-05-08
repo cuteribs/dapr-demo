@@ -1,0 +1,11 @@
+﻿version: 1
+common:
+  resourcesPath: ../components
+  env:
+    DAPR_APP_PORT: 7000
+apps:
+- appDirPath: .
+  appId: func
+  appPort: 7000
+  daprHttpPort: 3501
+  command: ["func", "start", "--port", "7000"]

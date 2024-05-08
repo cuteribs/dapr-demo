@@ -1,0 +1,17 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+
+metadata:
+  name: eventbroker
+
+spec:
+  type: pubsub.azure.servicebus.queues
+  version: v1
+  metadata:
+  - name: connectionString
+    secretKeyRef:
+      name: servicebus-connectionstring
+      key:  servicebus-connectionstring
+
+auth:
+  secretStore: secretstore

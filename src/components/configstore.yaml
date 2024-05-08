@@ -1,0 +1,17 @@
+﻿apiVersion: dapr.io/v1alpha1
+kind: Component
+
+metadata:
+  name: configstore
+
+spec:
+  type: configuration.azure.appconfig
+  version: v1
+  metadata:
+  - name: connectionString
+    secretKeyRef:
+      name: appconfig-connectionstring
+      key:  appconfig-connectionstring
+
+auth:
+  secretStore: secretstore
