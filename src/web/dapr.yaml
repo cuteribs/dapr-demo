@@ -1,0 +1,9 @@
+﻿version: 1
+common:
+  resourcesPath: ../components/local
+apps:
+- appDirPath: .
+  appId: web
+  appPort: 5000
+  daprHttpPort: 3501
+  command: ["dotnet", "run", "--urls=http://localhost:5000"]

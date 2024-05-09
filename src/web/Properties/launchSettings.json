@@ -1,21 +1,28 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "http": {
-        "commandName": "Project",
-        "dotnetRunMessages": true,
-        "launchBrowser": true,
-        "launchUrl": "test",
-        "applicationUrl": "http://localhost:5000",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
+    "profiles": {
+        "http": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "test",
+            "applicationUrl": "http://localhost:5000",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "dapr": {
+            "commandName": "Executable",
+            "executablePath": "dapr.exe",
+            "commandLineArgs": "run -d ..\\components\\local -p 5000 -- dotnet run -lp http",
+            "workingDirectory": ".",
+            "nativeDebugging": true
+        },
+        "dapr.yaml": {
+            "commandName": "Executable",
+            "executablePath": "dapr",
+            "commandLineArgs": "run -f .",
+            "workingDirectory": "."
         }
-    },
-    "dapr": {
-        "commandName": "Executable",
-        "executablePath": "dapr.exe",
-        "commandLineArgs": "run -d ..\\components -p 5000 -- dotnet run -lp http",
-        "workingDirectory": "."
     }
-  }
 }

@@ -1,5 +1,6 @@
+using Dapr.Client;
+using Dapr.Extensions.Configuration;
 using Microsoft.AspNetCore.DataProtection;
-using System.Text.Json;
 
 namespace web;
 
@@ -11,7 +12,16 @@ public class Program
 		var services = builder.Services;
 		var configuration = builder.Configuration;
 
+		var daprClient = new DaprClientBuilder().Build();
+
+		// merge dapr configuration store into configuration
+		configuration.AddDaprConfigurationStore(configuration["Dapr:ConfigStore"]!, new[] { "name" }, daprClient, TimeSpan.FromSeconds(30));
+
+		// merge dapr secret store into configuration
+		configuration.AddDaprSecretStore(configuration["Dapr:SecretStore"]!, daprClient);
+
 		services.AddControllers()
+			// register DaprClient
 			.AddDapr();
 
 		services.AddDataProtection()
@@ -22,8 +32,8 @@ public class Program
 
 		app.UseDeveloperExceptionPage();
 
-		//app.UseCloudEvents();
-		//app.MapSubscribeHandler();
+		app.UseCloudEvents();
+		app.MapSubscribeHandler();
 
 		app.MapControllers();
 

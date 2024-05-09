@@ -5,17 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web", "web\web.csproj", "{EA7C68BD-6AF9-4772-93E3-20933FD2E967}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{83079DF6-0F82-482B-8F79-2B20631F4F2C}"
-	ProjectSection(SolutionItems) = preProject
-		components\configstore.yaml = components\configstore.yaml
-		components\cryptostore.yaml = components\cryptostore.yaml
-		components\envvar-secretstore.yaml = components\envvar-secretstore.yaml
-		components\eventbroker.yaml = components\eventbroker.yaml
-		components\secretstore.yaml = components\secretstore.yaml
-		components\statestore.yaml = components\statestore.yaml
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "func", "func\func.csproj", "{5CF67477-657D-429E-AAEA-EA68CDEB6436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "func", "func\func.csproj", "{5CF67477-657D-429E-AAEA-EA68CDEB6436}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{264A9FFE-D2D9-486D-A85E-1D5AD4D78C18}"
 	ProjectSection(SolutionItems) = preProject

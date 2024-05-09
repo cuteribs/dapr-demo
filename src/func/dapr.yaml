@@ -2,7 +2,7 @@
 common:
   resourcesPath: ../components
   env:
-    DAPR_APP_PORT: 7000
+    DAPR_APP_PORT: 7000     # required for function app
 apps:
 - appDirPath: .
   appId: func

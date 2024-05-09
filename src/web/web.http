@@ -1,31 +1,37 @@
 @web_HostAddress = http://localhost:5000
 
-GET {{web_HostAddress}}/test/test?str=hello+there
-Accept: application/json
-
-###
-
+# dapr injected endpoint
 GET {{web_HostAddress}}/dapr/subscribe
-Content-Type: application/json
 
 ###
 
-POST {{web_HostAddress}}/test/pub
-Content-Type: application/json
-
-"test 9"
-
-###
-
+# dapr injected endpoint
 POST {{web_HostAddress}}/test/sub
 Content-Type: application/json
 
 {
-    "Id": "052d582d-6905-4658-90b6-2aaa378acce0",
-    "Content": "fake messsage"
+    "messageType": "test",
+    "message": "fake messsage"
 }
 
 ###
 
-GET http://localhost:3001/dapr/subscribe
-Content-Type: application/json
+GET {{web_HostAddress}}/test/pub?text=hello+world1
+
+###
+
+GET {{web_HostAddress}}/test/config?key=name
+
+###
+
+GET {{web_HostAddress}}/test/crypto?text=my+secret+text
+
+###
+
+GET {{web_HostAddress}}/test/secret
+
+###
+
+GET {{web_HostAddress}}/test/state?key=string&value=string
+
+###
