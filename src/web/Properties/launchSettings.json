@@ -14,7 +14,7 @@
         "dapr": {
             "commandName": "Executable",
             "executablePath": "dapr.exe",
-            "commandLineArgs": "run -d ..\\components\\local -p 5000 -- dotnet run -lp http",
+            "commandLineArgs": "run -d ..\\components\\local -p 5000 -H 3501 -- dotnet run -lp http",
             "workingDirectory": ".",
             "nativeDebugging": true
         },

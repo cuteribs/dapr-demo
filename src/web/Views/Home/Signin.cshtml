@@ -1,0 +1,29 @@
+﻿@{
+	Layout = null;
+	var account = this.ViewBag.Account as Microsoft.Identity.Client.IAccount;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<a asp-action="Signout">Sign out</a>
+
+	<h2>Claims</h2>
+	<dl>
+		@foreach (var claim in this.User.Claims ?? [])
+		{
+			<dt><strong>@claim.Type</strong></dt>
+			<dd>@claim.Value</dd>
+		}
+	</dl>
+
+	<h2>Access Token</h2>
+	@this.ViewBag.Token
+
+</body>
+</html>

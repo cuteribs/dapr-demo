@@ -5,6 +5,12 @@ metadata:
   name: statestore
 
 spec:
-  type: state.in-memory
   version: v1
+  type: state.in-memory
   metadata: []
+  # type: state.redis
+  # metadata:
+  # - name: redisHost
+  #   value: localhost:6379
+  # - name: redisPassword
+  #   value: 

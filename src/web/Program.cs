@@ -1,6 +1,8 @@
 using Dapr.Client;
 using Dapr.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Identity.Web;
 
 namespace web;
 
@@ -20,22 +22,34 @@ public class Program
 		// merge dapr secret store into configuration
 		configuration.AddDaprSecretStore(configuration["Dapr:SecretStore"]!, daprClient);
 
-		services.AddControllers()
+		services.AddControllersWithViews()
 			// register DaprClient
 			.AddDapr();
+		//services.AddMvc();
+		//services.AddControllers()
+
+		services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+			.AddMicrosoftIdentityWebApp(configuration.GetSection("Oidc"))
+			.EnableTokenAcquisitionToCallDownstreamApi()
+			.AddDistributedTokenCaches();
+
+		services.AddDistributedMemoryCache();
 
 		services.AddDataProtection()
 			.SetApplicationName("web")
+			.PersistKeysToDaprStateStore("statestore")
 			.ProtectKeysWithDaprCrypto("cryptostore", "protectionkey");
 
 		var app = builder.Build();
 
+
 		app.UseDeveloperExceptionPage();
+		app.UseRouting();
+		app.UseAuthentication().UseAuthorization();
+		app.MapDefaultControllerRoute();
 
 		app.UseCloudEvents();
 		app.MapSubscribeHandler();
-
-		app.MapControllers();
 
 		app.Run();
 	}
